@@ -1,60 +1,54 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('layouts.guest')
 
-        <x-validation-errors class="mb-4" />
+@section('login')
+<div class="main-container" id="login">
+    <div class="layout container-xxl p-0">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5 mt-4">
+                <form action="" style="display: contents;">
+                    <div class="fw-bolder tabs d-flex justify-content-around">
+                        <a href="{{ route('login') }}">Đăng nhập</a>
+                        <a href="javascript:void(0);" class="active">Đăng ký</a>
+                    </div>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+                    <div class="mt-4 mb-4">
+                        <label for="name">Họ tên</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Nhập họ và tên">
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
+                    <div class="mt-4 mb-4">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Nhập số điện thoại">
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+                    <div class="mt-4 mb-4">
+                        <label for="birthday">Ngày sinh</label>
+                        <input type="date" name="birthday" id="birthday" class="form-control">
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+                    <div class="mt-4 mb-4">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Nhập địa chỉ">
+                    </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+                    <div class="mt-4">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Nhập địa chỉ Email">
+                    </div>
 
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
+                    <div class="mt-4 mb-4">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
+                    </div>
+                    <a href="./login.html">Đã có tài khoản?</a>
+                    <button type="submit" class="w-100 btn-style mt-3">Đăng nhập</button>
+                </form>
+                <div class="text-center w-100 mt-4">
+                    <p class="text-center w-50 m-auto fs-5">ZETA cam kết bảo mật và sẽ không bao giờ đăng hay chia sẻ thông tin mà chưa có được sự đồng ý của bạn.</p>
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
             </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+        </div>
+    </div>
+</div>
+@endsection

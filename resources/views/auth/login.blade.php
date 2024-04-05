@@ -1,48 +1,33 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('layouts.guest')
 
-        <x-validation-errors class="mb-4" />
+@section('login')
+<div class="main-container" id="login">
+    <div class="layout container-xxl p-0">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5 mt-4">
+                <form action="{{ route('login') }}" method="POST" style="display: contents;">
+                    @csrf
+                    <div class="fw-bolder tabs d-flex justify-content-around">
+                        <a href="#" class="active">Đăng nhập</a>
+                        <a href="{{ route('register') }}">Đăng ký</a>
+                    </div>
+                    <div class="mt-4">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Nhập địa chỉ Email">
+                    </div>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+                    <div class="mt-4 mb-4">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
+                    </div>
+                    <a href="{{ route('user-password.update') }}">Quên mật khẩu?</a>
+                    <button type="submit" class="w-100 btn-style mt-3">Đăng nhập</button>
+                </form>
+                <div class="text-center w-100 mt-4">
+                    <p class="text-center w-50 m-auto fs-5">ZETA cam kết bảo mật và sẽ không bao giờ đăng hay chia sẻ thông tin mà chưa có được sự đồng ý của bạn.</p>
+                </div>
             </div>
-        @endif
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+        </div>
+    </div>
+</div>
+@endsection
