@@ -5,7 +5,7 @@
     <div class="layout container-xxl p-0">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5 mt-4">
-                <form action="" style="display: contents;">
+                <form action="{{ route('register') }}" method="POST" style="display: contents;">
                     @csrf
                     <div class="fw-bolder tabs d-flex justify-content-around">
                         <a href="{{ route('login') }}">Đăng nhập</a>
@@ -42,7 +42,7 @@
                         <label for="password">Mật khẩu</label>
                         <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
                     </div>
-                    <a href="./login.html">Đã có tài khoản?</a>
+                    <a href="{{ route('login') }}">Đã có tài khoản?</a>
                     <button type="submit" class="w-100 btn-style mt-3">Đăng nhập</button>
                 </form>
                 <div class="text-center w-100 mt-4">

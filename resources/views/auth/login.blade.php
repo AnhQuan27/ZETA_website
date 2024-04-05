@@ -1,6 +1,11 @@
 @extends('layouts.guest')
 
 @section('login')
+@if(session('success_message'))
+    <div class="alert alert-success">
+        {{ session('success_message') }}
+    </div>
+@endif
 <div class="main-container" id="login">
     <div class="layout container-xxl p-0">
         <div class="row justify-content-center">
@@ -20,7 +25,7 @@
                         <label for="password">Mật khẩu</label>
                         <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
                     </div>
-                    <a href="{{ route('user-password.update') }}">Quên mật khẩu?</a>
+                    <a href="{{ route('password.email') }}">Quên mật khẩu?</a>
                     <button type="submit" class="w-100 btn-style mt-3">Đăng nhập</button>
                 </form>
                 <div class="text-center w-100 mt-4">
