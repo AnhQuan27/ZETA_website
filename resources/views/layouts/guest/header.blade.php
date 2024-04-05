@@ -48,13 +48,13 @@
 
     <div class="row">
         <div class="navbar">
-            <a href="./home.html" class="logo">
+            <a href="{{ url('/') }}" class="logo">
                 <img src="{{ asset('frontend/assets/img/logo.png') }}" alt="">
             </a>
 
             <ul>
                 <li>
-                    <a href="./product-list.html">Sản phẩm</a>
+                    <a href="{{ url('product') }}">Sản phẩm</a>
                 </li>
 
                 <li>
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    @if (!Request::is('login') && !Request::is('register'))
+    @if (!Request::is('login') && !Request::is('register') && !Request::is('forgot-password'))
     <div class="row justify-content-center text-center">
         <div class="slides">
             <div class="swiper swiperSlides">
@@ -112,7 +112,6 @@
             </div>
         </div>
     </div>
-    @endif
 
     <div class="row">
         <div class="slogan text-center">
@@ -120,4 +119,5 @@
             <p>Nơi hội tụ những tâm hồn đồng điệu, cùng nhau tạo nên những điều phi thường! Hãy tham gia cùng ZETA, để tuổi trẻ của bạn không bao giờ hối tiếc!</p>
         </div>
     </div>
+    @endif
 </div>
