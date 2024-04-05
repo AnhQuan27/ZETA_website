@@ -28,5 +28,5 @@ Route::middleware([
 });
 
 Route::get('/product', function () {
-    return view('product.list');
+    return view('product.index');
 })->name('product');
