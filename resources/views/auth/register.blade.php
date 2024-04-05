@@ -6,6 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5 mt-4">
                 <form action="" style="display: contents;">
+                    @csrf
                     <div class="fw-bolder tabs d-flex justify-content-around">
                         <a href="{{ route('login') }}">Đăng nhập</a>
                         <a href="javascript:void(0);" class="active">Đăng ký</a>
