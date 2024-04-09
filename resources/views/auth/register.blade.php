@@ -43,7 +43,7 @@
                         <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
                     </div>
                     <a href="{{ route('login') }}">Đã có tài khoản?</a>
-                    <button type="submit" class="w-100 btn-style mt-3">Đăng nhập</button>
+                    <button type="submit" class="w-100 btn-style mt-3">Đăng Ký</button>
                 </form>
                 <div class="text-center w-100 mt-4">
                     <p class="text-center w-50 m-auto fs-5">ZETA cam kết bảo mật và sẽ không bao giờ đăng hay chia sẻ thông tin mà chưa có được sự đồng ý của bạn.</p>
