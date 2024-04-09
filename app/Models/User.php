@@ -27,6 +27,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'gender',
+        'birthday',
+        'position',
+        'avatar',
+        'role_id'
     ];
 
     /**
@@ -55,7 +61,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+    // protected $appends = [
+    //     'profile_photo_url',
+    // ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
