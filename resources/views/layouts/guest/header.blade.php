@@ -13,7 +13,7 @@
 
                 @if (Auth::check() && Auth::user()->role_id <= 3)
                 <li>
-                    <a href="#">
+                    <a href="{{ route('dashboard') }}">
                         <i data-feather="bar-chart-2" stroke-width="1.5"></i>
                         Dashboard
                     </a>
