@@ -799,9 +799,31 @@ input[type="search"]::-webkit-search-cancel-button {
     font-weight: 800;
 }
 
+.account-setting {
+    transform: translate3d(-1rem, 2.9rem, 0rem) !important;
+}
 
+.account-setting li {
+    margin: 0 !important;
+    margin: .5rem !important;
+}
 
+.account-setting a {
+    color: #303030 !important;
+    padding: 0 .5rem !important;
+    font-weight: 500;
+    border-radius: .4rem;
+}
 
+.account-setting a:hover {
+    color: #308ba4 !important;
+    background-color: #ebedf2 !important;
+}
+
+.account-setting a:has(.feather-log-out):hover {
+    color: var(--bs-danger) !important;
+    fill: var(--bs-danger) !important;
+}
 
 
 

@@ -10,6 +10,16 @@
     <div class="row">
         <div class="menu">
             <ul class="justify-content-end">
+
+                @if (Auth::check() && Auth::user()->role_id <= 3)
+                <li>
+                    <a href="#">
+                        <i data-feather="bar-chart-2" stroke-width="1.5"></i>
+                        Dashboard
+                    </a>
+                </li>
+                @endif
+                @auth
                 <li>
                     <a href="#">
                         <i data-feather="heart" stroke-width="1.5"></i>
@@ -24,12 +34,23 @@
                     </a>
                 </li>
 
-                @auth
-                <li>
-                    <a href="">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                         <i data-feather="user" stroke-width="1.5"></i>
                         Tài khoản
-                    </a>
+                    </a>                       
+                    <ul class="dropdown-menu collapse account-setting">
+                        <li>
+                            <a class="dropdown-item" href="#"><i data-feather="settings" stroke-width="1.5"></i>Quản lý</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i data-feather="log-out" stroke-width="1.5"></i>Đăng xuất</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
                 </li>
                 @else
                 <li>

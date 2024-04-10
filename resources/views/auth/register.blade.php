@@ -1,17 +1,33 @@
 @extends('layouts.guest')
 
-@section('login')
-<div class="main-container" id="login">
+@section('register')
+<div class="main-container" id="register">
     <div class="layout container-xxl p-0">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5 mt-4">
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('success') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
                 <form action="{{ route('register') }}" method="POST" style="display: contents;">
                     @csrf
                     <div class="fw-bolder tabs d-flex justify-content-around">
                         <a href="{{ route('login') }}">Đăng nhập</a>
                         <a href="javascript:void(0);" class="active">Đăng ký</a>
                     </div>
-
 
                     <div class="mt-4 mb-4">
                         <label for="name">Họ tên</label>
