@@ -15,5 +15,6 @@ class Product extends Model
         'price',
         'material',
         'gender',
+        'description',
     ];
 }

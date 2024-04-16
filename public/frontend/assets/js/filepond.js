@@ -30,3 +30,7 @@ function filepondMultiImage() {
     );
     var upload = FilePond.create(document.querySelector('.file-upload-multiple'));
 }
+
+// function uploadMultiImageFilePond(csrf_token) {
+
+// }

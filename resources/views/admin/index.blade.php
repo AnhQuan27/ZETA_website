@@ -546,4 +546,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    totalCustomersChart();
+    totalSalesChart() 
+    totalProfitsChart();
+    totalOrdersChart();
+    revenueChart();
+    salesCatChart();
+    dailySalesChart();
+    inventoryByCategoryChart();
+    weeklyReceiptChart();
+</script>
 @endsection

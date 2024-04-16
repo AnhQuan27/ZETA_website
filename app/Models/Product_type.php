@@ -12,6 +12,7 @@ class Product_type extends Model
     protected $fillable = [
         'color',
         'size',
+        'weight',
         'sold',
         'inventory',
         'product_id',

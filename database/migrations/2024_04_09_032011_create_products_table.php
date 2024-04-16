@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('material');
             $table->string('gender');
+            $table->text('description');
             $table->timestamps();
         });
     }

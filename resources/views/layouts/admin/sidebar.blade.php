@@ -32,7 +32,7 @@
 
         <ul class="sidebar-items" id="accordionExample">
             <li class="dropdown sidebar-item">
-                <a href="./dashboard.html" class="active rounded-3 dropdown-toggle d-flex align-items-center justify-content-between" aria-expanded="false">
+                <a href="{{ route('dashboard') }}" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between" aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-home" data-feather="home" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">Dashboard</span>
@@ -40,17 +40,17 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
                 <a href="./message.html" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between" aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-message-square" data-feather="message-square" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">Messages</span>
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="sidebar-item">
-                <a href="./product.html" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
+                <a href="{{ route('all.product') }}" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-layers" data-feather="layers" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">Product</span>

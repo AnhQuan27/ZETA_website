@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('color', 20);
             $table->string('size', 5);
+            $table->string('weight', 50);
             $table->integer('sold');
             $table->integer('inventory');
             $table->timestamps();

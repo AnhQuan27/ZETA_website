@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>ZETA Admin</title>
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/img/logo.png') }}" type="image/x-icon">
+
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
@@ -24,33 +26,43 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/loading.css') }}">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- DataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap5.css">
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script>
+    <script src="{{ asset('frontend/assets/js/datatable.js') }}"></script>
+    
+    <!-- Chart -->
+    <script src="{{ asset('frontend/assets/js/widget/widget.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <!-- Filepond -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
+    <!-- Script -->
+    <script src="{{ asset('frontend/assets/js/srcipt.js') }}"></script>
 </head>
 <body class="layout-box">
     @include('layouts.admin.header')
 
     @yield('dashboard')
+    @yield('product')
+    @yield('add.product')
 
-    <script src="{{ asset('frontend/assets/js/srcipt.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/widget/widget.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+
     <script>
-        totalCustomersChart();
-        totalSalesChart() 
-        totalProfitsChart();
-        totalOrdersChart();
-        revenueChart();
-        salesCatChart();
-        dailySalesChart();
-        inventoryByCategoryChart();
-        weeklyReceiptChart();
-    </script>
-    <script>
-      feather.replace()
-    </script>
+        feather.replace()
+        </script>
     <script>
         loadingIcon();
         sidebarToggle();
         getProductCategory();
-    </script>
+        </script>
 </body>
 </html>

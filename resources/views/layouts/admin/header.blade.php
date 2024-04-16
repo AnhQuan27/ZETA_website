@@ -39,7 +39,7 @@
                             <a class="dropdown-item position-relative" href="#">
                                 <div class="message d-flex justify-content-start">
                                     <div class="message-image">
-                                        <img src="./assets/img/profile-15.jpeg" alt="">
+                                        <img src="{{ asset('frontend/assets/img/profile-15.jpeg') }}" alt="">
                                     </div>
 
                                     <div class="message-info">
@@ -54,7 +54,7 @@
                             <a class="dropdown-item position-relative" href="#">
                                 <div class="message d-flex justify-content-start">
                                     <div class="message-image">
-                                        <img src="./assets/img/profile-15.jpeg" alt="">
+                                        <img src="{{ asset('frontend/assets/img/profile-15.jpeg') }}" alt="">
                                     </div>
 
                                     <div class="message-info">
@@ -69,7 +69,7 @@
                             <a class="dropdown-item position-relative" href="#">
                                 <div class="message d-flex justify-content-start">
                                     <div class="message-image">
-                                        <img src="./assets/img/profile-15.jpeg" alt="">
+                                        <img src="{{ asset('frontend/assets/img/profile-15.jpeg') }}" alt="">
                                     </div>
 
                                     <div class="message-info">
@@ -95,7 +95,7 @@
                             <a class="dropdown-item position-relative" href="#">
                                 <div class="message d-flex justify-content-start">
                                     <div class="message-image">
-                                        <img src="./assets/img/profile-15.jpeg" alt="">
+                                        <img src="{{ asset('frontend/assets/img/profile-15.jpeg') }}" alt="">
                                     </div>
 
                                     <div class="message-info">
