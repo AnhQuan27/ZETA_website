@@ -1255,7 +1255,9 @@ label[for="image-upload"] {
     border: .1rem solid var(--dark-text-secondary);
 }
 
-
+.swal2-html-container {
+    font-size: 1.4rem !important;
+}
 
 
 

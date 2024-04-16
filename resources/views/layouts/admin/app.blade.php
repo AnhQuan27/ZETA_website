@@ -40,9 +40,8 @@
     <script src="{{ asset('frontend/assets/js/widget/widget.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     
-    <!-- Filepond -->
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <!-- Animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <!-- Script -->
     <script src="{{ asset('frontend/assets/js/srcipt.js') }}"></script>
@@ -54,15 +53,22 @@
     @yield('product')
     @yield('add.product')
 
-
+   <!-- SWAL -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         feather.replace()
-        </script>
+    </script>
     <script>
         loadingIcon();
         sidebarToggle();
         getProductCategory();
-        </script>
+    </script>
+    @if(session('message'))
+    <script>
+        let message = `{{ session('message') }}`;
+        toastMessage(message);
+    </script>
+    @endif
 </body>
 </html>

@@ -217,3 +217,29 @@ function quantityDetect() {
 function buyNow() {
     // const  document.querySelector('')
 }
+
+function toastMessage(message) {
+    Swal.fire({
+        text: message,
+        showConfirmButton: false,
+        background: "#2DCB70",
+        toast: true,
+        animation: true,
+        color: "#FFFF",
+        showCloseButton: true,
+        timer: 2500,
+        position: "top-end",
+        // timerProgressBar: true,
+        showClass: {
+            popup: 'animate__animated animate__fadeInRight animate__faster'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutRight animate__faster'
+        },
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('click', ()=> Swal.close())
+        }
+    });
+}
