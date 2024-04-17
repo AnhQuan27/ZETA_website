@@ -18,6 +18,7 @@ class ProductController extends Controller
                     ->join('product_types', 'products.id', '=', 'product_types.product_id')
                     ->select('products.*', DB::raw("SUM(product_types.inventory) AS inventory"))
                     ->groupBy('products.id','products.name', 'products.category', 'products.description', 'products.price', 'products.material', 'products.gender', 'products.created_at', 'products.updated_at', )
+                    ->orderBy('created_at', 'desc')
                     ->get();
 
         return view('admin.product.product', compact('products'));

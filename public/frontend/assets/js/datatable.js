@@ -32,6 +32,7 @@ $(document).ready(function() {
                 targets: 5, 
             }
         ],
+        order: false,
     });
 });
 
