@@ -30,6 +30,24 @@ class ProductTypeController extends Controller
         DB::table('product_types')
             ->insert($data);
 
+        $product_type_id = DB::getPdo()->lastInsertId();  
+        
+        if($request->file('image')) {
+            foreach ($request->file('image') as $image) {
+                $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('image/product/'), $name_gen);
+    
+                $last_image = 'image/product/' . $name_gen;
+                $data_image = [
+                    'image' => $last_image,
+                    'product_type_id' => $product_type_id,
+                    'created_at' => Carbon::now(),
+                ];
+                DB::table('product_images')
+                    ->insert($data_image);
+            }
+        } 
+        
         $notification = [
             'type-alert' => 'success',
             'message' => 'Product type updated successfully',
@@ -63,12 +81,14 @@ class ProductTypeController extends Controller
         
         $product_images = DB::table('product_types')
         ->join('product_images', 'product_types.id', '=' ,'product_images.product_type_id')
-        ->where('product_types.product_id', $id)
+        ->where('product_types.id', $id)
         ->get();
+        // dd($product_images);
 
         
         if($request->file('image')) {
             if($product_images->isNotEmpty()) {
+                // dd($product_images);
                 foreach ($product_images as $image) {
                     unlink($image->image);
                     DB::table('product_images')

@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/product', function () {
     return view('product.index');
 })->name('product');

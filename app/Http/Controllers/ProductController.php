@@ -91,13 +91,14 @@ class ProductController extends Controller
 
     public function edit($id) {
         $product = DB::table('products')
+                    ->select('products.*')
                     ->join('product_types', 'products.id', '=' ,'product_types.product_id')
                     ->where('products.id', $id)
                     ->first();
 
         $product_types = DB::table('product_types')
         // ->join('product_images', 'product_types.id', '=' ,'product_images.product_type_id')
-        ->where('product_types.product_id', $id)
+        ->where('product_id', $id)
         ->get();
 
         $product_images = DB::table('product_types')

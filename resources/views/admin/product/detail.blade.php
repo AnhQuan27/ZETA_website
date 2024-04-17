@@ -8,13 +8,8 @@
         <div class="layout-pd">
             <div class="container-xxl p-0">
                 <div class="row mt-5">
+                    {{-- {{ $product_types->id }} --}}
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                        @if(session('message'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>{{ session('message') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        @endif
                         <form action="{{ url('/admin/product/update/'.$product->id) }}" method="POST" style="display:contents" enctype="multipart/form-data">
                         @csrf
                             <div class="widget">
@@ -84,17 +79,8 @@
                         </form>
                     </div>
 
-                    @foreach ($product_types as $type)                        
+                    @foreach ($product_types as $type)
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
                         <form action="{{ url('admin/product_type/update/'.$type->id) }}" method="POST" style="display:contents" enctype="multipart/form-data">
                             @csrf
     
@@ -122,8 +108,8 @@
                                     
                                     <div class="mb-4">
                                         <label>Images</label>
-                                        <label id="image-label" for="image-upload">Choose File</label>
-                                        <input type="file" name="image[]" id="image-upload" class="d-none" multiple onchange="loadFiles(event)">
+                                        {{-- <label id="image-label" for="image-upload">Choose File</label> --}}
+                                        <input type="file" name="image[]" id="image-upload" class="" multiple onchange="loadFiles(event)">
                                         <div id="image-preview">
                                             @foreach ($product_images as $image )
                                                 @if ($image->product_type_id == $type->id)
@@ -171,8 +157,8 @@
                                 
                                 <div class="mb-4">
                                     <label>Images</label>
-                                    <label id="image-label" for="image-upload">Choose File</label>
-                                    <input type="file" name="image[]" id="image-upload" class="d-none" multiple onchange="loadFiles(event)">
+                                    {{-- <label id="image-label" for="image-upload">Choose File</label> --}}
+                                    <input type="file" name="image[]" id="image-upload" class="" multiple>
                                     <div id="image-preview">
                                     </div>
                                 </div>
@@ -193,25 +179,25 @@
 </div>
 
 <script>
-    function loadFiles(event) {
-        var button = document.getElementById('image-label');
-        var files = event.target.files;
-        var imagePreviewDiv = document.getElementById('image-preview');
-        imagePreviewDiv.innerHTML = '';
-        button.textContent = `${files.length} files chosen`;
+    // function loadFiles(event) {
+    //     var button = document.getElementById('image-label');
+    //     var files = event.target.files;
+    //     var imagePreviewDiv = document.getElementById('image-preview');
+    //     imagePreviewDiv.innerHTML = '';
+    //     button.textContent = `${files.length} files chosen`;
 
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var reader = new FileReader();
+    //     for (var i = 0; i < files.length; i++) {
+    //         var file = files[i];
+    //         var reader = new FileReader();
 
-            reader.onload = function(e) { // create function after reading file successfully
-                var img = document.createElement('img');
-                img.src = e.target.result; // data read from file (url)
-                imagePreviewDiv.appendChild(img); 
-            }
+    //         reader.onload = function(e) { // create function after reading file successfully
+    //             var img = document.createElement('img');
+    //             img.src = e.target.result; // data read from file (url)
+    //             imagePreviewDiv.appendChild(img); 
+    //         }
 
-            reader.readAsDataURL(file);
-        }
-    }
+    //         reader.readAsDataURL(file);
+    //     }
+    // }
 </script>
 @endsection
