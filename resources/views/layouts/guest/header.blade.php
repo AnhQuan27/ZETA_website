@@ -113,32 +113,40 @@
     </div>
 
     @if (!Request::is('login') && !Request::is('register') && !Request::is('forgot-password'))
-    <div class="row justify-content-center text-center">
-        <div class="slides">
-            <div class="swiper swiperSlides">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('frontend/assets/img/slider_1.jpeg') }}" alt="">
-                    </div>
-                    
-                    <div class="swiper-slide">
-                        <img src="{{ asset('frontend/assets/img/slider_2.jpeg') }}" alt="">
-                    </div>
+        @if (!Request::is('product/*'))
+            @if (!Request::is('product'))
 
-                    <div class="swiper-slide">
-                        <img src="{{ asset('frontend/assets/img/slider_3.jpeg') }}" alt="">
+                <div class="row justify-content-center text-center">
+                    <div class="slides">
+                        <div class="swiper swiperSlides">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('frontend/assets/img/slider_1.jpeg') }}" alt="">
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('frontend/assets/img/slider_2.jpeg') }}" alt="">
+                                </div>
+            
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('frontend/assets/img/slider_3.jpeg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="slogan text-center">
-            <h1>Blow Your Youth</h1>
-            <p>Nơi hội tụ những tâm hồn đồng điệu, cùng nhau tạo nên những điều phi thường! Hãy tham gia cùng ZETA, để tuổi trẻ của bạn không bao giờ hối tiếc!</p>
-        </div>
-    </div>
+            @endif
+
+            <div class="row">
+                <div class="slogan text-center">
+                    <h1>Blow Your Youth</h1>
+                    <p>Nơi hội tụ những tâm hồn đồng điệu, cùng nhau tạo nên những điều phi thường! Hãy tham gia cùng ZETA, để tuổi trẻ của bạn không bao giờ hối tiếc!</p>
+                </div>
+            </div>
+            
+        @endif
+
     @endif
 </div>

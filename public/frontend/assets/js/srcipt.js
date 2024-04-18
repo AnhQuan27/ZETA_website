@@ -189,8 +189,8 @@ function quantityDetect() {
     const quantityInStock = document.querySelector('.quantity-in-stock span');
 
     minus.addEventListener('click', function () {
-        if (parseInt(input.value) <= 0)  {
-            input.value = 0;
+        if (parseInt(input.value) <= 1)  {
+            input.value = 1;
         } else {
             input.value--;
         }
@@ -209,7 +209,7 @@ function quantityDetect() {
         if (enteredValue > parseInt(quantityInStock.textContent)) {
             this.value = quantityInStock.textContent;
         } else if (enteredValue < 0) {
-            this.value = 0;
+            this.value = 1;
         }
     });
 }

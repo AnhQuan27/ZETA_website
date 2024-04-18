@@ -36,9 +36,9 @@
 </head>
 <body class="layout-box">
     @include('layouts.guest.header')
-
     @yield('home')
-
+    @yield('product.detail')
+    
     @include('layouts.guest.footer')
 
     <script src="{{ asset('frontend/assets/js/srcipt.js') }}"></script>
@@ -54,9 +54,15 @@
     <script>
         loadingIcon();
         supportTabs();
-        supportToggle();
+        // supportToggle();
         cart();
     </script>
+    @if (Request::is('product/*'))
+        <script>
+            // colorDetect();
+            quantityDetect();
+        </script>
+    @endif
     <script>
       feather.replace()
     </script>

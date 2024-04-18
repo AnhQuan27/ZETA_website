@@ -77,10 +77,10 @@
     </div>
 </div>
 
-<div class="chat-container">
+{{-- <div class="chat-container">
     <div class="title">
         <i data-feather="message-square"></i>
         <span>Hỗ trợ khách hàng</span>
     </div>
     <iframe src="./chat-support.html" style="border: 0px none transparent; height: 100%; width: 100%; display: block;" frameborder="0" class="d-none"></iframe>
-</div>
+</div> --}}

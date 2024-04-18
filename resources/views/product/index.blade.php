@@ -1,7 +1,7 @@
 @extends('layouts.guest.app')
 @section('home')
-
-<div class="main-container">
+{{-- @dd($productData) --}}
+<div class="main-container pt-4" id="productsSection">
     <div class="layout container-xxl p-0">
         <div class="row">
             @include('layouts.guest.sider')
@@ -11,548 +11,83 @@
                 </div>
 
                 <div class="row item-list">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
+                    @foreach (array_reverse($productData) as $product)
 
-                                    <a href="#">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
+                            <div class="item-product">
+                                <form action="" style="display: contents;">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product['product']->id }}" name="productID">
+                                    <div class="product-thumbnail">
+                                        <div class="add-to-cart">
+                                            <button type="submit" class="c">
+                                                <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
+                                            </button>
+                                        </div>
+    
+                                    <a href="{{ url('product/'.$product['product']->id) }}">
                                         <div class="swiper product-preview">
                                             <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
+
+                                                @foreach ($product['product_types'] as $product_type)
+                                                    
+                                                    @if ($product_type['product_images']->isNotEmpty())
+
+                                                        <div class="swiper-slide">
+                                                            <div class="swiper-slide">
+                                                                <img src="{{ asset($product_type['product_images']->first()->image) }}">
+                                                            </div>
+                                                        </div>
+
+                                                    @endif
+                                                @endforeach
+
                                             </div>
                                         </div>
                                     </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
                                     </div>
+    
+                                    <div class="product-info">
+                                        <div thumbsSlider="" class="swiper product-option">
+                                            <div class="swiper-wrapper mt-4">
 
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                                                @foreach ($product['product_types'] as $product_type)
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
+                                                    @if ($product_type['product_images']->isNotEmpty())
+                                                        <label class="swiper-slide" for="{{ $product_type['product_type']->color }}">
+                                                            <img src="{{ asset($product_type['product_images']->first()->image) }}">
+                                                        </label>
+                                                        <input type="radio" name="color" value="{{ $product_type['product_type']->color }}" id="{{ $product_type['product_type']->color }}" hidden checked>
+                                                    @endif
+                                                    
+                                                @endforeach
 
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
                                             </div>
                                         </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
+    
+                                        <div class="product-name mt-2">
+                                            <a href="{{ url('product/'.$product['product']->id) }}">{{ $product['product']->name }}</a>
                                         </div>
+                                        <div class="product-price mt-2">{{ number_format($product['product']->price, 0, ',', '.') }}đ</div>
                                     </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-5">
-                        <div class="item-product">
-                            <form action="" style="display: contents;">
-                                <input type="text" value="00111" name="productID" hidden>
-                                <div class="product-thumbnail">
-                                    <div class="add-to-cart">
-                                        <button type="submit" class="c">
-                                            <i data-feather="shopping-cart" stroke-width="1.8" color="white"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="#">
-                                        <div class="swiper product-preview">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}" class="first">
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="product-info">
-                                    <div thumbsSlider="" class="swiper product-option">
-                                        <div class="swiper-wrapper mt-4">
-                                            <label class="swiper-slide" for="white">
-                                                <img src="{{ asset('frontend/assets/img/1-08510a70-4d15-45ae-8bda-dcb419578047.png') }}"/>
-                                            </label>
-                                            <input type="radio" name="color" value="white" id="white" hidden checked>
-
-                                            <label class="swiper-slide" for="black">
-                                                <img src="{{ asset('frontend/assets/img/3-e9e9e394-a700-48cd-9aad-ec3d3f2b8c3c.png') }}" />
-                                            </label>
-                                            <input type="radio" name="color" value="black" id="black" hidden>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-name mt-2">
-                                        <a href="">Áo Thun Teelab Local Brand Unisex Baseball Jersey Shirt TS228</a>
-                                    </div>
-                                    <div class="product-price mt-2">185.000đ</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    window.onload = function() {
+        const targetElement = document.getElementById('productsSection');
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    };
+</script>
 @endsection

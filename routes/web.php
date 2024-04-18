@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductTypeController;;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,9 @@ use App\Http\Controllers\HomeController;
 
 // Guests controller
 Route::get('/', [HomeController::class, 'index']);
-
-Route::get('/product', function () {
-    return view('product.index');
-})->name('product');
+Route::get('/product', [HomeProductController::class, 'index']);
+Route::get('/{category}', [HomeProductController::class, 'showByCategory']);
+Route::get('/product/{id}', [HomeProductController::class, 'detail']);
 
 // Auth controller
 Route::get('/login', function () {

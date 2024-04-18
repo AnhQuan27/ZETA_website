@@ -11,11 +11,11 @@
                 <div class="product-category">{{ $item['category']->category }}</div>
                 <div class="swiper product-slide">
                     <div class="swiper-wrapper">
-                        @foreach ($item['products'] as $product)                          
+                        @foreach (array_reverse($item['products']) as $product)                          
                         <div class="swiper-slide">
                             <div class="item-product">
                                 <form action="product-detail.html" method="get" style="display: contents;">
-                                   
+                                    @csrf
                                     <input type="text" value="{{ $product['product']->id }}" name="productID" hidden>
                                     <div class="product-thumbnail">
                                         <div class="add-to-cart">
@@ -24,16 +24,22 @@
                                             </button>
                                         </div>
 
-                                        <a href="#">
+                                        <a href="{{ url('product/'.$product['product']->id) }}">
                                             <div class="swiper product-preview">
                                                 <div class="swiper-wrapper">
+
                                                     @foreach ($product['product_types'] as $product_type)
+
                                                         @if ($product_type['product_images']->isNotEmpty())
+
                                                             <div class="swiper-slide">
                                                                 <img src="{{ $product_type['product_images']->first()->image }}">
                                                             </div>
+
                                                         @endif
+
                                                     @endforeach
+
                                                 </div>
                                             </div>
                                         </a>
@@ -42,6 +48,7 @@
                                     <div class="product-info">
                                         <div thumbsSlider="" class="swiper product-option">
                                             <div class="swiper-wrapper mt-4">
+
                                                 @foreach ($product['product_types'] as $product_type)
                                                     @if ($product_type['product_images']->isNotEmpty())
                                                         <label class="swiper-slide" for="white">
