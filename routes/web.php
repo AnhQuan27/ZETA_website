@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\HomeProductController;
 // Guests controller
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/product', [HomeProductController::class, 'index']);
-Route::get('/{category}', [HomeProductController::class, 'showByCategory']);
+Route::get('/category/{category}', [HomeProductController::class, 'showByCategory']);
 Route::get('/product/{id}', [HomeProductController::class, 'detail']);
 
 // Auth controller
@@ -37,10 +38,12 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// Middleware Authentication
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'roleCheck'
 ])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index');
@@ -59,4 +62,19 @@ Route::middleware([
     // Product Type Controller
     Route::post('/product_type/update/{id}', [ProductTypeController::class, 'update']);
     Route::post('/product_type/add', [ProductTypeController::class, 'store'])->name('store.product_type');
+
+
+    // Cart Controller
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('index.cart');
+    Route::post('/product/{id}/add-to-cart', [CartController::class, 'store'])->name('store.cart');
+    Route::post('/product/{id}/buy-now', [CartController::class, 'store'])->name('store.order');
+});
+
+

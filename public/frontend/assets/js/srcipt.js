@@ -119,15 +119,20 @@ function cart() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             var form = button.closest('form');
-            var productID = form.querySelector('input[name="productID"]').value;
-            var productColor = form.querySelector('input[name="color"]').value;
+            form.addEventListener('input', function() {
+                var id = form.querySelector('input[name="productID"]').value;
+                var color = form.querySelector('input[name="color"]').value;
+                var size = form.querySelector('input[name="size"]').value;
 
-            var product = {
-                id: productID,
-                color: productColor,
-            }
+                var product = {
+                    id: id,
+                    color: color,
+                    size: size,
+                }
+                addToCart(product);
+            })
 
-            addToCart(product);
+
 
             Swal.fire({
                 text: `Thêm vào giỏ hàng thành công`,
@@ -157,10 +162,7 @@ function cart() {
 }
 
 function addToCart(product) {
-    // Kiểm tra xem có dữ liệu giỏ hàng trong Local Storage chưa
     var cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Thêm sản phẩm vào giỏ hàng
     cart.push(product);
 
     // Lưu giỏ hàng vào Local Storage

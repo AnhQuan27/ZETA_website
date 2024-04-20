@@ -121,12 +121,6 @@ class HomeProductController extends Controller
             ->where('product_id', $id)
             ->first();
 
-        // $productByCategory = DB::table('products')
-        //     ->where('category', $productData['product']->category)
-        //     ->orderBy('created_at', 'desc')
-        //     ->limit(2)
-        //     ->get();
-
         $productsByCategory = DB::table('products')
         ->where('category', $product->category)
         ->get();

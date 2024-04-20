@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('amount');
             $table->text('note');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('product_type_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

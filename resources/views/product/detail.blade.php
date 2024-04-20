@@ -126,9 +126,9 @@
                     </p>
                     <p>- Thiết kế: Thêu và in</p>
                 </div>
-                <form action="" style="display:contents;">
+                <form action="" method="POST" style="display:contents;" id="dataProduct">
                     @csrf
-                    <input type="hidden" name="productID" value="{{ $productData['product'] ->id }}">
+                    <input type="hidden" name="productID" value="{{ $productData['product']->id }}">
 
                     <div class="color-option">
                         <p class="m-0">Chọn màu</p>
@@ -136,7 +136,9 @@
                         @foreach ($productData['product_types'] as $product_type)
                             @if ($product_type['product_images']->isNotEmpty())
                                 
-                                <input type="radio" name="color" value="{{ $product_type['product_type']->color }}" id="{{ $product_type['product_type']->color }}" hidden checked>
+                                <input type="radio" name="color" value="{{ $product_type['product_type']->color }}" id="{{ $product_type['product_type']->color }}" hidden @if ($loop->first)
+                                    checked
+                                @endif>
                                 <label for="{{ $product_type['product_type']->color }}" class="me-2" style="background-image: url({{ asset($product_type['product_images']->first()->image) }});"></label>
 
                             @endif
@@ -147,7 +149,9 @@
                     <div class="size-option mt-2">
                         <p class="m-0">Size</p>
                         @foreach ($sizes as $size)
-                            <input type="radio" name="size" value="{{ $size->size }}" id="{{ $size->size }}-size" hidden checked>
+                            <input type="radio" name="size" value="{{ $size->size }}" id="{{ $size->size }}-size" hidden @if ($loop->first)
+                                checked
+                            @endif>
                             <label for="{{ $size->size }}-size" class="me-2 text-uppercase">{{ $size->size }}</label>
                         @endforeach
                     </div>
@@ -156,7 +160,7 @@
                         <div class="m-0  w-auto">Số lượng</div>
                         <div class="input-option">
                             <span class="minus">-</span>
-                            <input type="number" name="quantity" id="quantity" class="form-text" value="1">
+                            <input type="number" name="amount" id="amount" class="form-text" value="1">
                             <span class="plus">+</span>
                         </div>
                     </div>
@@ -166,13 +170,13 @@
                     </div>
 
                     <div class="buy-now me-4">
-                        <button type="submit" class="btn-style">Mua ngay</button>
+                        <button type="submit" class="btn-style" formaction="{{ route('store.order', $productData['product']->id, 'buy-now') }}">Mua ngay</button>
                     </div>
 
                     <div class="add-to-cart">
-                        <button type="submit" class="cart btn-style">
+                        <button type="submit" class="cart btn-style" formaction="{{ route('store.cart', $productData['product']->id, 'add-to-cart') }}">
                             Thêm vào giỏ hàng
-                            <i data-feather="shopping-cart" stroke-width="1.5" color="white"></i>
+                            <i data-feather="shopping-cart" id="addToCart" stroke-width="1.5" color="white"></i>
                         </button>
                     </div>
 
@@ -265,4 +269,18 @@
         </div>
     </div>
 </div>
+<script>
+    // document.getElementById('addToCart').addEventListener('click', function(e){
+    //     e.preventDefault();
+
+    //     var formData = new FormData(document.getElementById('dataProduct'));
+    //     axios.post('/add-to-cart', formData)
+    //         .then(function(response) {
+    //             console.log(response.data);
+    //         }).catch(function(error) {
+    //             // Xử lý lỗi nếu có
+    //             console.error(error);
+    //         });
+    // })
+</script>
 @endsection

@@ -12,12 +12,12 @@
             <ul class="justify-content-end">
 
                 @if (Auth::check() && Auth::user()->role_id <= 3)
-                <li>
-                    <a href="{{ route('dashboard') }}">
-                        <i data-feather="bar-chart-2" stroke-width="1.5"></i>
-                        Dashboard
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ route('dashboard') }}">
+                            <i data-feather="bar-chart-2" stroke-width="1.5"></i>
+                            Dashboard
+                        </a>
+                    </li>
                 @endif
                 @auth
                 <li>
@@ -28,7 +28,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('index.cart') }}">
                         <i data-feather="shopping-bag" stroke-width="1.5"></i>
                         Giỏ hàng
                     </a>
@@ -113,7 +113,7 @@
     </div>
 
     @if (!Request::is('login') && !Request::is('register') && !Request::is('forgot-password'))
-        @if (!Request::is('product/*'))
+        @if (!Request::is('product/*') && !Request::is('cart'))
             @if (!Request::is('product'))
 
                 <div class="row justify-content-center text-center">

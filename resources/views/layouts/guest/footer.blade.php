@@ -1,6 +1,6 @@
 <div class="footer-container">
     <div class="container-xxl pt-4 pb-4">
-        <div class="row">
+        <div class="row ">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                 <a href="{{ url('home') }}" class="text-decoration-none text-white">
                     <h1 class="m-0">

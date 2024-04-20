@@ -10,19 +10,19 @@
         </li>
 
         <li class="menu-item">
-            <a class="" href="{{ url('hoodie') }}">Hoodie</a>
+            <a class="" href="{{ url('category/hoodie') }}">Hoodie</a>
         </li>
 
         <li class="menu-item">
-            <a class="" href="{{ url('sandal') }}">Sandal</a>
+            <a class="" href="{{ url('category/sandal') }}">Sandal</a>
         </li>
 
         <li class="menu-item">
-            <a class="" href="{{ url('shirt') }}">Shirt</a>
+            <a class="" href="{{ url('category/shirt') }}">Shirt</a>
         </li>
 
         <li class="menu-item">
-            <a class="" href="{{ url('shoes') }}">Shoes</a>
+            <a class="" href="{{ url('category/shoes') }}">Shoes</a>
         </li>
     </ul>
 </div>
