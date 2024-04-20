@@ -94,4 +94,19 @@ class CartController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function delete($id) {
+        DB::table('carts')
+            ->where('user_id', Auth::user()->id)
+            ->where('id', $id)
+            ->delete();
+
+        $notification = [
+            'alert-type' => 'success',
+            'message' =>  'Xoá khỏi giỏ hàng thành công',
+        ];
+    
+
+        return redirect()->back()->with($notification);
+    }
 }

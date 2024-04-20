@@ -187,7 +187,7 @@ function colorDetect() {
 function quantityDetect() {
     const minus = document.querySelector('.minus');
     const plus = document.querySelector('.plus');
-    const input = document.querySelector('#quantity');
+    const input = document.querySelector('#amount');
     const quantityInStock = document.querySelector('.quantity-in-stock span');
 
     minus.addEventListener('click', function () {

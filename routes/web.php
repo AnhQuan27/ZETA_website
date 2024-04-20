@@ -73,8 +73,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('index.cart');
+    Route::get('/cart/delete/{id}', [CartController::class, 'delete']);
+
     Route::post('/product/{id}/add-to-cart', [CartController::class, 'store'])->name('store.cart');
     Route::post('/product/{id}/buy-now', [CartController::class, 'store'])->name('store.order');
+
 });
 
 

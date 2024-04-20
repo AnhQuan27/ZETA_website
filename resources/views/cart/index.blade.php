@@ -39,7 +39,7 @@
                                         <td class="text-center">{{ $cart->amount }}</td>
                                         <td class="text-danger text-center fw-bolder">{{ number_format($cart->price * $cart->amount, 0, '','.') }}đ</td>
                                         <td>
-                                            <a href="?delete" class="badge badge-light-error">
+                                            <a href="{{ url('cart/delete/'.$cart->id) }}" class="badge badge-light-error">
                                                 <i data-feather="trash" stroke="#dc3545"></i>
                                             </a>
                                         </td>

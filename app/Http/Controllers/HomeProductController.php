@@ -154,7 +154,6 @@ class HomeProductController extends Controller
         return view('product.detail', compact('productData', 'sizes', 'inventory', 'productDataByCategory'));
     }
     
-
 }
 
 
