@@ -705,6 +705,24 @@ input[type="search"]::-webkit-search-cancel-button {
     float: left;
 }
 
+#profile :is(input,select) {
+    padding: 1rem;
+    font-size: 1.4rem;
+}
+
+#profile label[for="user-images"] {
+    height: 18rem;
+    width: 18rem;
+}
+
+#profile label[for="user-images"] .preview-images {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--dark-text-secondary);
+    object-fit: cover;
+}
+
 .btn.btn-style {
     height: auto;
     padding: 1.5rem;

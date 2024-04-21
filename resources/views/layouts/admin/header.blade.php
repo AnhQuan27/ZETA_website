@@ -116,9 +116,9 @@
                     <div class="avatar-container">
                         <i class="fa-solid fa-circle position-absolute" data-feather="circle"></i>
                         @if (Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}">
+                            <img src="{{ asset(Auth::user()->avatar) }}">
                         @else
-                        <img src="{{ asset('frontend/assets/img/user_defauth.png') }}">
+                            <img src="{{ asset('frontend/assets/img/user_defauth.png') }}">
                         @endif
                         
                     </div>
@@ -130,30 +130,33 @@
                             <div class="emoji me-2">👋</div>
                             <div class="d-flex flex-column align-items-center">
                                 <h4>{{ last(explode(" ", Auth::user()->name)) }}</h4>
-                                <p class="text-primary mb-0 fs-5 text-capitalize">{{ Auth::user()->role->name }}</p>
+                                <p class="text-primary mb-0 fs-5 text-capitalize">{{ Auth::user()->position }}</p>
                             </div>
                         </div>
                         
                         <hr>
 
                         <div class="dropdown-item py-0">
-                            <a href="./account.html" class="d-flex justify-content-start align-items-center log-out">
+                            <a href="{{ url('profile') }}" class="d-flex justify-content-start align-items-center log-out">
                                 <i data-feather="user" class="fa-solid fa-user" stroke-width="1.5"></i>
                                 <span>Profile</span>
                             </a>
                         </div>
 
                         <div class="dropdown-item py-0">
-                            <a href="./message.html" class="d-flex justify-content-start align-items-center">
+                            <a href="" class="d-flex justify-content-start align-items-center">
                                 <i data-feather="inbox" class="fa-solid fa-inbox" stroke-width="1.5"></i>
                                 <span>Inbox</span>
                             </a>
                         </div>
 
                         <div class="dropdown-item py-0">
-                            <a href="./account.html" class="d-flex justify-content-start align-items-center log-out">
+                            <a href="javascript:void(0);"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-flex justify-content-start align-items-center log-out">
                                 <i data-feather="log-out" class="fa-solid fa-user" stroke-width="1.5"></i>
                                 <span>Log Out</span>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </a>
                         </div>
                     </div>

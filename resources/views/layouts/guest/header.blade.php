@@ -41,7 +41,7 @@
                     </a>                       
                     <ul class="dropdown-menu collapse account-setting">
                         <li>
-                            <a class="dropdown-item" href="#"><i data-feather="settings" stroke-width="1.5"></i>Quản lý</a>
+                            <a class="dropdown-item" href="{{ url('profile') }}"><i data-feather="settings" stroke-width="1.5"></i>Quản lý</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i data-feather="log-out" stroke-width="1.5"></i>Đăng xuất</a>
@@ -113,7 +113,7 @@
     </div>
 
     @if (!Request::is('login') && !Request::is('register') && !Request::is('forgot-password'))
-        @if (!Request::is('product/*') && !Request::is('cart') && !Request::is('checkout'))
+        @if (!Request::is('product/*') && !Request::is('cart') && !Request::is('checkout') && !Request::is('profile'))
             @if (!Request::is('product'))
 
                 <div class="row justify-content-center text-center">

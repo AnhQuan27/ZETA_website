@@ -17,14 +17,14 @@
             <div class="user-info d-flex align-items-center">
                 <div class="profile-img">
                 @if (Auth::user()->avatar)
-                    <img src="{{ Auth::user()->avatar }}">
+                    <img src="{{ asset(Auth::user()->avatar) }}">
                 @else
                     <img src="{{ asset('frontend/assets/img/user_defauth.png') }}">
                 @endif
                 </div>
                 <div class="d-flex flex-column align-items-start ms-3 add-dn">
                     <h4  class="m-0">{{ last(explode(" ", Auth::user()->name)) }}</h4>
-                    <p class="text-primary mb-0 fs-5 text-capitalize">{{ Auth::user()->role->name }}</p>
+                    <p class="text-primary mb-0 fs-5 text-capitalize">{{ Auth::user()->position }}</p>
                 </div>
             </div>
         </div>
