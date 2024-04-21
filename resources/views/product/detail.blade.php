@@ -170,7 +170,7 @@
                     </div>
 
                     <div class="buy-now me-4">
-                        <button type="submit" class="btn-style" formaction="{{ route('store.order', $productData['product']->id, 'buy-now') }}">Mua ngay</button>
+                        <button type="submit" class="btn-style" formaction="{{ ('store.order') }}">Mua ngay</button>
                     </div>
 
                     <div class="add-to-cart">

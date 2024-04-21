@@ -45,7 +45,8 @@
     @yield('product.index')
     @yield('product.detail')
     @yield('cart.index')
-    
+    @yield('cart.checkout')
+
     @include('layouts.guest.footer')
 
     <script src="{{ asset('frontend/assets/js/srcipt.js') }}"></script>
@@ -70,10 +71,12 @@
             quantityDetect();
         </script>
     @endif
-    @if (session('message')) 
+
+    @if (session('message'))
         <script>
+            let type = `{{ session('alert-type') }}`;
             let message = `{{ session('message') }}`;
-            toastMessage(message);
+            toastMessage(type,message);
         </script>       
     @endif
     <script>

@@ -24,14 +24,14 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $notification = [
-                'type' => 'success',
+                'alert-type' => 'success',
                 'message' => 'Đăng nhập thành công',
             ];
             return redirect()->intended()->with($notification);
         }
 
         $notification = [
-            'type' => 'error',
+            'alert-type' => 'error',
             'message' => 'Email hoặc mật khẩu không chính xác',
         ];
 
@@ -61,7 +61,7 @@ class AuthController extends Controller
         ]);
 
         $notification = [
-            'type' => 'success',
+            'alert-type' => 'success',
             'message' => 'Đăng ký thành công',
         ];
 
@@ -73,7 +73,7 @@ class AuthController extends Controller
         Auth::logout();
 
         $notification = [
-            'type' => 'success',
+            'alert-type' => 'success',
             'message' => 'Đăng xuất thành công',
         ];
 

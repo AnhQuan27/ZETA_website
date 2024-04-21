@@ -220,18 +220,39 @@ function buyNow() {
     // const  document.querySelector('')
 }
 
-function toastMessage(message) {
+function toastMessage(type,message) {
+    var background;
+    var colorText;
+    switch (type) {
+        case "success":
+            background = '#2DCB70';
+            colorText = "#FFF";
+            break;
+        
+        case "alert":
+            background = '#FFC107';
+            colorText = "##212529";
+            break;
+
+        case "error":
+            background = '#DC3545';
+            colorText = "#FFF";
+            break;
+
+        default:
+            break;
+    }
     Swal.fire({
         text: message,
         showConfirmButton: false,
-        background: "#2DCB70",
+        background: background,
         toast: true,
         animation: true,
-        color: "#FFFF",
+        color: colorText,
         showCloseButton: true,
         timer: 2500,
         position: "top-end",
-        // timerProgressBar: true,
+        timerProgressBar: true,
         showClass: {
             popup: 'animate__animated animate__fadeInRight animate__faster'
         },

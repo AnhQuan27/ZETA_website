@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,8 +77,12 @@ Route::middleware([
     Route::get('/cart/delete/{id}', [CartController::class, 'delete']);
 
     Route::post('/product/{id}/add-to-cart', [CartController::class, 'store'])->name('store.cart');
-    Route::post('/product/{id}/buy-now', [CartController::class, 'store'])->name('store.order');
+    
+    Route::get('/checkout', [OrderController::class, 'index']);
+    Route::post('/checkout', [OrderController::class, 'store'])->name('store.order');
 
+    Route::get('/profile', [ProfileController::class, 'index']);
+    
 });
 
 

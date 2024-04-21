@@ -113,7 +113,7 @@
     </div>
 
     @if (!Request::is('login') && !Request::is('register') && !Request::is('forgot-password'))
-        @if (!Request::is('product/*') && !Request::is('cart'))
+        @if (!Request::is('product/*') && !Request::is('cart') && !Request::is('checkout'))
             @if (!Request::is('product'))
 
                 <div class="row justify-content-center text-center">
