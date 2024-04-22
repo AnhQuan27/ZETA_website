@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,12 +80,15 @@ Route::middleware([
 
     Route::post('/product/{id}/add-to-cart', [CartController::class, 'store'])->name('store.cart');
     
-    Route::get('/checkout', [OrderController::class, 'index']);
-    Route::post('/checkout', [OrderController::class, 'store'])->name('store.order');
+    Route::get('/order', [OrderController::class, 'index']);
+    Route::post('/order', [OrderController::class, 'store'])->name('store.order');
 
     Route::get('/profile', [ProfileController::class, 'index']);
     Route::post('/profile', [ProfileController::class, 'update']);
-    
+
+    Route::get('/checkout', [CheckoutController::class, 'index']);
+
+    Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->name('vnpay_payment');
 });
 
 

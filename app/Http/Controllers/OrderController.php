@@ -54,7 +54,7 @@ class OrderController extends Controller
             
             return redirect()->back()->with($notification);
         } else {
-            return view('cart.checkout', compact('carts', 'totalPrice'));
+            return view('cart.order', compact('carts', 'totalPrice'));
         }
     }
 
@@ -68,18 +68,18 @@ class OrderController extends Controller
         ];
         // if()
         // dd($data);
-        DB::table('orders')
+        $order = DB::table('orders')
             ->insert($data);
 
-        DB::table('cart_items')
-            ->where('cart_id', $request->cartId)
-            ->delete();
+        // $cart_item = DB::table('cart_items')
+        //     ->where('cart_id', $request->cartId)
+        //     ->delete();
 
         $notification = [
             'alert-type' => 'success',
             'message' =>  'Tạo đơn hàng thành công',
         ];
         
-        return redirect('/cart')->with($notification);
+        return redirect('/checkout')->with($notification);
     }
 }

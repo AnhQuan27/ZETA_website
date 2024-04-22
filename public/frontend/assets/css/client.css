@@ -802,6 +802,18 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 100%;
 }
 
+#checkout .bank-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#checkout .bank-container img {
+    height: 3rem;
+    width: auto;
+    margin-left: 1rem;
+}
+
 .badge-light-error {
     color: #dc3545;
     background-color: #f6dde0;

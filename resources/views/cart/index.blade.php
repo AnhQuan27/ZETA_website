@@ -52,7 +52,7 @@
 
                 <div class="buy-now float-end">
                     <p>Tổng tiền: <span class="text-danger fw-bolder float-end">{{ number_format($totalPrice, 0, '','.') }}đ</span></p>
-                    <a href="checkout" class="btn btn-style">Mua ngay</a>
+                    <a href="order" class="btn btn-style">Mua ngay</a>
                 </div>
                 </form>
             </div>
