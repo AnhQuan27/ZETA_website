@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index() {
         $products = DB::table('products')
                     ->join('product_types', 'products.id', '=', 'product_types.product_id')
-                    ->select('products.*', DB::raw("SUM(product_types.inventory) AS inventory"))
+                    ->select('products.*', DB::raw("SUM(product_types.inventory) AS inventory"),  DB::raw("SUM(product_types.sold) AS sold"))
                     ->groupBy('products.id','products.name', 'products.category', 'products.description', 'products.price', 'products.material', 'products.gender', 'products.created_at', 'products.updated_at', )
                     ->orderBy('created_at', 'desc')
                     ->get();
@@ -37,18 +37,6 @@ class ProductController extends Controller
             'unitPrice' => 'required',
         ]);
 
-        // $existingProduct = Product_type::where('color', $validated['color'])
-        //                                 ->where('size', $validated['size'])
-        //                                 ->whereHas('product', function ($query) use ($validated) {
-        //                                     $query->where('name', $validated['name']);
-        //                                 })->first();
-        // if ($existingProduct) {
-        //     $notification = [
-        //         'type' => 'error',
-        //         'message' => 'A product with the same name, color, and size already exists.',
-        //     ];
-        //     return redirect()->back()->with($notification);
-        // }
 
         $product = Product::create([
             'name' => $validated['name'],
@@ -66,20 +54,6 @@ class ProductController extends Controller
             'sold' => 0,
             'product_id' => $product->id,
         ]);
-
-        // if($request->file('image')) {
-        //     foreach ($request->file('image') as $image) {
-        //         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        //         $image->move(public_path('image/product/'), $name_gen);
-    
-        //         $last_image = 'image/product/' . $name_gen;
-    
-        //         Product_image::create([
-        //             'image' => $last_image,
-        //             'product_type_id' => $product_type->id,
-        //         ]);
-        //     }
-        // }
 
         $notification = [
             'type' => 'success',

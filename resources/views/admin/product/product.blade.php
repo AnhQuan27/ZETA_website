@@ -3,7 +3,6 @@
 @section('product')
 <div class="main-container">
     @include('layouts.admin.sidebar')
-    
     <div id="content" class="main-content product">
         <div class="layout-pd">
             <div class="container-xxl p-0">
@@ -17,6 +16,7 @@
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Price</th>
+                                        <th>Sold</th>
                                         <th>Inventory</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -31,6 +31,7 @@
                                         </td>
                                         <td class="product-category">{{ $product->category }}</td>
                                         <td>{{ $product->price }}</td>
+                                        <td>{{ $product->sold }}</td>
                                         <td>{{ $product->inventory }}</td>
                                         <td class="table-action">
                                             <a class="badge badge-light-info" href="{{ url('admin/product/edit/' . $product->id) }}"><i stroke-width='1.5' data-feather="edit-3"></i></a>
