@@ -52,6 +52,8 @@
     @yield('dashboard')
     @yield('product')
     @yield('add.product')
+    @yield('admin.user')
+    @yield('admin.user.add')
 
    <!-- SWAL -->
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -66,8 +68,9 @@
     </script>
     @if(session('message'))
     <script>
+        let type = `{{ session('alert-type') }}`;
         let message = `{{ session('message') }}`;
-        toastMessage(message);
+        toastMessage(type, message);
     </script>
     @endif
 </body>

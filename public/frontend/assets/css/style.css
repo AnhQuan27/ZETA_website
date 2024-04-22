@@ -984,12 +984,18 @@ table.data-tables tbody td {
     padding: 1.5rem 1rem;
 }
 
-table.data-tables tbody td img {
+table.data-tables tbody td div:has(img) {
     height: 3.5rem;
-    width: auto;
-    border: .2rem solid var(--dark-text-secondary);
+    width: 3.5rem;
     margin-right: .8rem;
+}
+
+table.data-tables tbody td img {
+    height: 100%;
+    width: 100%;
+    border: .18rem solid var(--dark-text-secondary);
     border-radius: 50%;
+    object-fit: cover;
 }
 
 table.data-tables tbody td:has(.fa-mail) {
@@ -1184,13 +1190,21 @@ textarea {
     border: .5rem solid var(--dark-text);
 }
 
-.filepond {
-    cursor: pointer;
+.label-avatar {
+    font-size: 1.5rem;
 }
 
-.filepond--root#user-images {
-	width:170px;
-	margin: 0 auto;
+label[for="user-images"] {
+    height: 18rem;
+    width: 18rem;
+}
+
+label[for="user-images"] .preview-images {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--dark-text-secondary);
+    object-fit: cover;
 }
 
 .btn {

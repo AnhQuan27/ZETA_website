@@ -59,7 +59,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="./user.html" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
+                <a href="{{ route('all.user') }}" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-users" data-feather="users" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">User</span>

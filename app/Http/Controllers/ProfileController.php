@@ -60,14 +60,13 @@ class ProfileController extends Controller
                 unlink(Auth::user()->avatar);
             }
             $avatar = $request->file('avatar');
-            $name = $this->rename($validated['name']); // Chuyển tên người dùng thành không dấu và thay dấu cách bằng dấu _
+            $name = $this->rename($validated['name']);
             $user_id = Auth::user()->id;
             $image_ext = strtolower($avatar->getClientOriginalExtension());
             $image_name = "{$name}_{$user_id}.{$image_ext}";
             $up_location = 'image/user/';
             $last_image = $up_location . $image_name;
     
-            // Lưu tập tin avatar vào thư mục
             $avatar->move($up_location, $image_name);
     
             $data['avatar'] = $last_image;

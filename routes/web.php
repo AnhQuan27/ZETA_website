@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,13 @@ Route::middleware([
     Route::post('/product/update/{id}', [ProductController::class, 'update']);
     Route::get('/product/delete/{id}', [ProductController::class, 'delete']);
 
+    Route::get('/user', [UserController::class, 'index'])->name('all.user');
+    Route::get('/user/add', [UserController::class, 'add'])->name('add.user');
+    Route::post('/user/add', [UserController::class, 'store'])->name('store.user');
+
+    Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+    Route::post('/user/update/{id}', [UserController::class, 'update']);
+    Route::get('/user/delete/{id}', [UserController::class, 'delete']);
 
     // Product Type Controller
     Route::post('/product_type/update/{id}', [ProductTypeController::class, 'update']);
