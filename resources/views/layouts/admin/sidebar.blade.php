@@ -68,7 +68,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="./order.html" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
+                <a href="{{ route('all.order') }}" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-file-text" data-feather="file-text" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">Order</span>
@@ -77,7 +77,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="./invoice.html" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
+                <a href="{{ route('all.invoice') }}" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-dollar-sign" data-feather="dollar-sign" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">Invoice</span>
@@ -85,14 +85,14 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
                 <a href="./support.html" class="rounded-3 dropdown-toggle d-flex align-items-center justify-content-between"  aria-expanded="false">
                     <div class="d-flex">
                         <i class="fa-solid fa-headphones" data-feather="headphones" stroke-width="1.5"></i>
                         <span class="ms-2 add-dn">Support</span>
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
     </nav>

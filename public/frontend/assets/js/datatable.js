@@ -60,7 +60,6 @@ $(document).ready(function() {
     $('#order').DataTable({
         language: {
             searchPlaceholder: "Search...",
-            lengthMenu: 'Result: _MENU_<a href="./order-add.html" class="btn btn-primary btn-add">Add new</a>',
             info: "Showing page _PAGE_ of _PAGES_",
         },
         lengthMenu: [7, 10, 20, 50],
@@ -68,9 +67,11 @@ $(document).ready(function() {
         columnDefs: [
             {
                 orderable: false, 
-                targets: 6, 
+                targets: 7, 
             }
         ],
+        order: false,
+
     });
 });
 
@@ -78,7 +79,6 @@ $(document).ready(function() {
     $('#invoice').DataTable({
         language: {
             searchPlaceholder: "Search...",
-            lengthMenu: 'Result: _MENU_<a href="./invoice-add.html" class="btn btn-primary btn-add">Add new</a>',
             info: "Showing page _PAGE_ of _PAGES_",
         },
         lengthMenu: [7, 10, 20, 50],
@@ -89,5 +89,7 @@ $(document).ready(function() {
                 targets: 6, 
             }
         ],
+        order: false,
+        
     });
 });

@@ -82,4 +82,64 @@ class OrderController extends Controller
         
         return redirect('/checkout')->with($notification);
     }
+
+    public function all() {
+        $orders = DB::table('orders as o')
+            ->join('users as u', 'o.user_id', '=','u.id')
+            ->join('invoices as i', 'i.order_id', '=', 'o.id')
+            ->join('invoice_statuses as is', 'i.invoice_status_id', '=', 'is.id')
+            ->select('o.*','u.id as user_id', 'u.name as user_name', 'u.email as user_email', 'u.phone as user_phone', 'u.avatar as user_avatar', 'is.status as invoice_status')
+            ->get();
+        
+        // dd($orders);
+        return view('admin.order.index', compact('orders'));
+    }
+
+    public function edit($id) {
+        $order = DB::table('orders as o')
+            ->join('users as u', 'o.user_id', '=','u.id')
+            ->join('invoices as i', 'i.order_id', '=', 'o.id')
+            ->select('o.*','u.id as user_id', 'u.name as user_name', 'u.email as user_email', 'u.phone as user_phone', 'u.avatar as user_avatar', 'i.id as invoice_id')
+            ->where('o.id', $id)
+            ->first();
+        return view('admin.order.detail', compact('order'));
+    }
+
+    public function update(Request $request, $id) {
+        $validated = $request->validate([
+            'total_price' => 'required|numeric',
+            'created_at' => 'required',
+        ]);
+
+        $data = [
+            'total_price' => $validated['total_price'],
+            'created_at' => $validated['created_at'],
+            'note' => $request->note,
+            'updated_at' => Carbon::now(),
+        ];
+
+        DB::table('orders')
+            ->where('id', $id)
+            ->update($data);
+
+        $notification = [
+            'alert-type' => 'success',
+            'message' =>  'Order updated successfully',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function delete($id) {
+        DB::table('orders')
+            ->where('id', $id)
+            ->delete($id);
+
+        $notification = [
+            'alert-type' => 'success',
+            'message' =>  'Order deleted successfully',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
 }

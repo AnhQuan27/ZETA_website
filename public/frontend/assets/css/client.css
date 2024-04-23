@@ -889,8 +889,23 @@ input[type="search"]::-webkit-search-cancel-button {
     fill: var(--bs-danger) !important;
 }
 
+#invoice > .layout > .row > .col-12{
+    border: .1rem dashed var(--bg-dark);
+    border-radius: 2rem;
+    padding: 3rem 1rem;
+}
 
+#invoice .invoice-status-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
 
+#invoice .invoice-status-icon svg {
+    width: 5.5rem;
+    height: auto;
+}
 
 
 

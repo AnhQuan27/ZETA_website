@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use DB;
 use Auth;
+use Exception;
 use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
@@ -62,7 +64,7 @@ class CheckoutController extends Controller
 
     public function vnpay_payment() {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://127.0.0.1:8000/checkout";
+        $vnp_Returnurl = "http://127.0.0.1:8000/invoice";
         $vnp_TmnCode = "N2SBAUI4";
         $vnp_HashSecret = "RSEJKRIJTHJCTZHKILASIFNQTKFIRLSC";
         
@@ -128,6 +130,77 @@ class CheckoutController extends Controller
             } else {
                 echo json_encode($returnData);
             }
-        // vui lòng tham khảo thêm tại code demo
+    }
+
+    public function invoice() {
+        try {
+            $vnp_TxnRef = $_GET['vnp_TxnRef'];
+            $vnp_Amount = $_GET['vnp_Amount'] / 100;
+            $vnp_ResponseCode = $_GET['vnp_ResponseCode'];
+            $vnp_TransactionNo = $_GET['vnp_TransactionNo'];
+            $vnp_BankCode = $_GET['vnp_BankCode'];
+            $vnp_PayDate = $_GET['vnp_PayDate'];
+
+            if($vnp_ResponseCode == '00') {
+                $existingInvoice = DB::table('invoices')
+                    ->where('order_id', $vnp_TxnRef)
+                    ->exists();
+
+                if($existingInvoice) {
+
+                    $notification = [
+                        'alert-type' => 'error',
+                        'message' => 'Đơn hàng đã tồn tại',
+                    ];
+    
+                    return redirect('/')->with($notification);
+                } else {
+                    $invoice_status_id = 1;
+                    $data = [
+                        'payment_method' => 'vnp_banking',
+                        'total_price' => $vnp_Amount,
+                        'time' => Carbon::now(),
+                        'created_at' => Carbon::now(),
+                        'invoice_status_id' => $invoice_status_id,
+                        'order_id' => $vnp_TxnRef,
+                    ];
+        
+                    $invoiceId = DB::table('invoices')
+                        ->insertGetId($data);
+
+                    $cartId = DB::table('orders')
+                        ->select('cart_id')
+                        ->where('id', $data['order_id'])
+                        ->first()->cart_id;
+
+                    // dd($cartId);
+
+                    DB::table('cart_items')
+                        ->where('cart_id', $cartId)
+                        ->delete();
+                        
+                    // dd($clearCartItems);
+
+                    $data['invoice_id'] = $invoiceId;
+
+                    $notification = [
+                        'alert-type' => 'success',
+                        'message' => 'Giao dịch thành công',
+                    ];
+
+                    return view('cart.invoice', compact('data'));
+                }
+            } else {
+                $notification = [
+                    'alert-type' => 'error',
+                    'message' => 'Giao dịch không thành công'
+                ];
+    
+                return view('cart.index');
+            }
+            
+        } catch (Exception $e) {
+            return redirect('/');
+        }
     }
 }

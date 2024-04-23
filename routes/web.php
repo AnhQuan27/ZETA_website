@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,11 @@ Route::middleware([
     Route::post('/product/update/{id}', [ProductController::class, 'update']);
     Route::get('/product/delete/{id}', [ProductController::class, 'delete']);
 
+    // Product Type Controller
+    Route::post('/product_type/update/{id}', [ProductTypeController::class, 'update']);
+    Route::post('/product_type/add', [ProductTypeController::class, 'store'])->name('store.product_type');
+
+    // User Controller 
     Route::get('/user', [UserController::class, 'index'])->name('all.user');
     Route::get('/user/add', [UserController::class, 'add'])->name('add.user');
     Route::post('/user/add', [UserController::class, 'store'])->name('store.user');
@@ -70,12 +76,17 @@ Route::middleware([
     Route::post('/user/update/{id}', [UserController::class, 'update']);
     Route::get('/user/delete/{id}', [UserController::class, 'delete']);
 
-    // Product Type Controller
-    Route::post('/product_type/update/{id}', [ProductTypeController::class, 'update']);
-    Route::post('/product_type/add', [ProductTypeController::class, 'store'])->name('store.product_type');
+    // Order Controller
+    Route::get('/order', [OrderController::class, 'all'])->name('all.order');
+    Route::get('/order/detail/{id}', [OrderController::class, 'edit']);
+    Route::post('/order/update/{id}', [OrderController::class, 'update']);
+    Route::get('/order/delete/{id}', [OrderController::class, 'delete']);
 
-
-    // Cart Controller
+    // Invoice Controller
+    Route::get('/invoice', [InvoiceController::class, 'index'])->name('all.invoice');
+    Route::get('/invoice/detail/{id}', [InvoiceController::class, 'edit']);
+    Route::post('/invoice/update/{id}', [InvoiceController::class, 'update']);
+    Route::get('/invoice/delete/{id}', [InvoiceController::class, 'delete']);
 });
 
 Route::middleware([
@@ -83,6 +94,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    // Cart Controller
     Route::get('/cart', [CartController::class, 'index'])->name('index.cart');
     Route::get('/cart/delete/{id}', [CartController::class, 'delete']);
 
@@ -95,6 +108,8 @@ Route::middleware([
     Route::post('/profile', [ProfileController::class, 'update']);
 
     Route::get('/checkout', [CheckoutController::class, 'index']);
+
+    Route::get('/invoice', [CheckoutController::class, 'invoice']);
 
     Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->name('vnpay_payment');
 });

@@ -48,6 +48,7 @@
     @yield('cart.checkout')
     @yield('cart.order')
     @yield('profile.show')
+    @yield('cart.invoice')
 
     @include('layouts.guest.footer')
 

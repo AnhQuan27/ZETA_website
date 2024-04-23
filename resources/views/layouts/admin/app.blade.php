@@ -54,7 +54,11 @@
     @yield('add.product')
     @yield('admin.user')
     @yield('admin.user.add')
-
+    @yield('admin.all.order')
+    @yield('admin.detail.order')
+    @yield('admin.all.invoice')
+    @yield('admin.detail.invoice')
+    
    <!-- SWAL -->
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
