@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;;
 use Illuminate\Support\Facades\Route;
@@ -50,9 +51,7 @@ Route::middleware([
     'verified',
     'roleCheck'
 ])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Product Controller
     Route::get('/product', [ProductController::class, 'index'])->name('all.product');

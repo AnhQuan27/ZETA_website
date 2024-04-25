@@ -18,7 +18,7 @@
                               <div class="w-chart-section">
                                   <div class="w-detail">
                                       <p class="w-title">Total</p>
-                                      <p class="w-stats">405,506</p>
+                                      <p class="w-stats">{{ number_format( $customers->sum('total'), 0, '', '.') }}</p>
                                   </div>
                                   <div class="w-chart-render">
                                       <div class="customer-chart d-flex" style="min-height: 10rem">
@@ -50,7 +50,7 @@
                             <div class="w-chart-section">
                                 <div class="w-detail">
                                     <p class="w-title">Total</p>
-                                    <p class="w-stats">405,506</p>
+                                    <p class="w-stats">{{ number_format( $sales->sum('total'), 0, '', '.') }}</p>
                                 </div>
                                 <div class="w-chart-render">
                                     <div class="customer-chart d-flex" style="min-height: 10rem">
@@ -548,8 +548,8 @@
 </div>
 
 <script>
-    totalCustomersChart();
-    totalSalesChart() 
+    totalCustomersChart(@json($customers));
+    totalSalesChart(@json($sales)) 
     totalProfitsChart();
     totalOrdersChart();
     revenueChart();

@@ -3,15 +3,15 @@ function getThisMonth() {
   return month.getMonth();
 }
 
-function totalCustomersChart() {
+function totalCustomersChart(customers) {
   const ctx = document.getElementById('totalCustomersChart').getContext('2d');
   let totalCustomersChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: customers.map(customer => `${customer.month}`),
       datasets: [
         {
-          data: [21, 9, 36, 12, 44, 25, 59, 41, 66, 45, 32, 70],
+          data: customers.map(customer => customer.total),
           tension: 0.25,
           borderColor: "#36A2EB",
           backgroundColor: "#36A2EB",
@@ -48,15 +48,15 @@ function totalCustomersChart() {
   })
 }
 
-function totalSalesChart() {
+function totalSalesChart(sales) {
   const ctx = document.getElementById('totalSalesChart').getContext('2d');
   let totalSalesChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: sales.map(sale => `${sale.month}`),
       datasets: [
         {
-          data: [22, 19, 30, 47, 32, 44, 34, 55, 41, 69, 45, 78],
+          data: sales.map(sale => sale.total),
           tension: 0.25,
           borderColor: "#FF9F40",
           backgroundColor: "#FF9F40",

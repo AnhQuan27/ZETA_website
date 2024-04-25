@@ -205,7 +205,7 @@
                                                 </button>
                                             </div>
 
-                                            <a href="#">
+                                            <a href="{{ $product['product']->id }}">
                                                 <div class="swiper product-preview">
                                                     <div class="swiper-wrapper">
                                                         @foreach ($product['product_types'] as $product_type)
@@ -248,7 +248,7 @@
                                             </div>
 
                                             <div class="product-name mt-2">
-                                                <a href="">{{ $product['product']->name }}</a>
+                                                <a href="{{ $product['product']->id }}">{{ $product['product']->name }}</a>
                                             </div>
                                             <div class="product-price mt-2">{{ number_format($product['product']->price, 0, ',', '.') }}đ</div>
                                         </div>

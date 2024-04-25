@@ -86,7 +86,7 @@
                                             @endif
                                             
                                             <div class="m-1 col-md-12" style="text-align: right;">
-                                                <input type="submit" name="submit" id="submit" class="btn btn-secondary" value="Add new">
+                                                <input type="submit" name="submit" id="submit" class="btn btn-secondary" value="Update">
                                             </div>
                                         </div>
                                     </div>
