@@ -59,6 +59,13 @@
         supportToggle();
         cart();
     </script>
+    @if (session('message'))
+        <script>
+            let type = `{{ session('alert-type') }}`;
+            let message = `{{ session('message') }}`;
+            toastMessage(type,message);
+        </script>       
+    @endif
     <script>
       feather.replace()
     </script>

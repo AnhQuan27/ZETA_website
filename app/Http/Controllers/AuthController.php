@@ -28,14 +28,22 @@ class AuthController extends Controller
                 'message' => 'Đăng nhập thành công',
             ];
             return redirect()->intended()->with($notification);
+        } else {
+            $errorMessage = 'Email hoặc mật khẩu không chính xác';
+            if (!User::where('email', $request->email)->exists()) {
+                $errorMessage = 'Email không tồn tại';
+            } elseif (!User::where('email', $request->email)->where('password', Hash::make($request->password))->exists()) {
+                $errorMessage = 'Mật khẩu không chính xác';
+            }
+
+            $notification = [
+                'alert-type' => 'error',
+                'message' => $errorMessage,
+            ];
+
+            return redirect()->back()->with($notification)->withInput();
         }
 
-        $notification = [
-            'alert-type' => 'error',
-            'message' => 'Email hoặc mật khẩu không chính xác',
-        ];
-
-        return back()->withInput()->with($notification);
     }
 
     public function register(Request $request)
